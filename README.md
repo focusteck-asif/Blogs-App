@@ -1,70 +1,192 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# API Documentation-Blogs App
 
-## Available Scripts
+This is a basic blogs app, where user can login, and after authentication and authorization, user can get acces to protected routes with his privilages to add, view, and delete blogs. User can also add, view and delete comments on blogs. There is also role based privilages for admin and user. All these frontend functionality is being done in React, Backend in Node Express Js with Database in Postgresql.
 
-In the project directory, you can run:
+## Tech Stack
+Server Language: Node version v20.5.0                               
+Framework: Express.js  
+Backend: Postgresql 15.4  
+Frontend: React Js 18.2.0
+## Installation
 
-### `npm start`
+Install my-project with npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npx create-react-app tech-blogs
+cd tech-blogs
+npm install react-router-dom
+npm install axios 
+npm install bcrypt
+npm install cors
+npm install db-migrate-pg
+npm install dotenv
+npm install express
+npm install express-validator
+npm install formik
+npm install http-proxy-middleware
+npm install jsonwebtoken
+npm install jwt-decode
+npm install pg
+npm install sequelize
+npm install sequelize-cli
+npm install yup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
 
-### `npm test`
+## API Reference
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+###  User API
+#### User Sign Up
 
-### `npm run build`
+```http
+ POST localhost:3001/signup
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `signup` | `string` | **Required**. returns token to user |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### User Login
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```http
+ POST localhost:3001/login
+```
 
-### `npm run eject`
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `login`      | `string` | **Required**. returns token to user |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Token API
+#### Verify Token
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```http
+ GET localhost:3001/verify-token
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `verify-token`      | `string` | **Required**. returns user data |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Blogs API
+#### GET Blogs
 
-## Learn More
+```http
+ GET localhost:3001/blogs
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `blogs`      | `string` | **Required**. returns all blogs data|
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### GET Blog By ID
 
-### Code Splitting
+```http
+ GET localhost:3001/blogs/:id
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `blogs/:id`      | `string` | **Required**. returns a specific blog |
 
-### Analyzing the Bundle Size
+#### DELETE Blog
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```http
+ Delete localhost:3001/blogs/:id
+```
 
-### Making a Progressive Web App
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `blogs/:id`      | `string` | **Required**. delte the blog |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Create Blog
 
-### Advanced Configuration
+```http
+ POST localhost:3001/create
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `create`      | `string` | **Required**. returns new blog |
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Comments API
+#### POST Comments
 
-### `npm run build` fails to minify
+```http
+ POST localhost:3001//blogs/:blogId/comments
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `/blogs/:blogId/comments`      | `string` | **Required**. returns new comment |
+
+#### GET Comments
+
+```http
+ GET localhost:3001//blogs/:blogId/comments
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `/blogs/:blogId/comments`      | `string` | **Required**. returns all comments |
+
+#### DELETE Comments
+
+```http
+ DELETE localhost:3001/comments/:commentId
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `/comments/:commentId`      | `string` | **Required**. returns new comment |
+
+## Features
+- User Management: The System allows to create user accouts with some information like valid name, email and password. A registered user can login with his provided credentials, to get access to protected routes upon authentication and authorization.
+
+- User Authentication with JWT Tokens: The system allows a secure user authentication upon login with JSON Web Token (JWT) to allow access to protected routes. This is being done with token verification.
+
+- Blogs Management: To Authenticated users, system allows to manage blogs. User can add new blogs, view blogs and also can delte his blogs as well as can comment on all blogs.
+
+- User-Blog Association: There is also associations between user and blogs. As a user can have many blogs, and every blog have a user. This will enhance the functionality of personalized blogs management.
+
+- Comments Management: The system also allows comment management, user can view, add and delete his comments. There is also associations between user, blogs and comments.
+
+- Role Based Privilages: There are also roles based privilages for better management of blogs and comments, admin can erform all operations on all blogs, whereas a user can comment, and view every blog, but can delete only his own blogs and comments.
+
+- Password Encryption: To enhance the system security, it stores users passwords in an encrypted format. It will make difficult to compromise system security.
+
+- Auth Context: The whole App on frontend is wrapped in a context provider, which makes authentication and authorization more scalable and easy to maintain.
+
+
+
+
+
+
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`DB_PORT`
+
+`SECRET_KEY`
+
+
+## Running Tests
+
+- Backend: To run backend first, run the following commands
+```bash
+  cd server
+
+  // now run the following command
+
+  node server.js
+```
+-Frontend-: For frontend, run the following command
+``` bash  
+npm start
+```
+
+
