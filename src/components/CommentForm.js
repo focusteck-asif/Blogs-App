@@ -14,6 +14,7 @@ const CommentForm = ({ blogId, addComment }) => {
             setUserId(user.id)
         }
     }, [user])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newComment = {
