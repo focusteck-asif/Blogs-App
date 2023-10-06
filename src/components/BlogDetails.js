@@ -36,7 +36,6 @@ const BlogDetails = () => {
     } catch (error) {
       setNotFound(true)
     }
-
   }
 
   async function getComments() {
