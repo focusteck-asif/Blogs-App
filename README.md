@@ -1,5 +1,5 @@
 
-# API Documentation-Blogs App
+# Blogs App - Documentation
 
 This is a basic blogs app, where user can login, and after authentication and authorization, user can get acces to protected routes with his privilages to add, view, and delete blogs. User can also add, view and delete comments on blogs. There is also role based privilages for admin and user. All these frontend functionality is being done in React, Backend in Node Express Js with Database in Postgresql.
 
@@ -13,29 +13,11 @@ Frontend: React Js 18.2.0
 Install my-project with npm
 
 ```bash
-npx create-react-app tech-blogs
-cd tech-blogs
-npm install react-router-dom
-npm install axios 
-npm install bcrypt
-npm install cors
-npm install db-migrate-pg
-npm install dotenv
-npm install express
-npm install express-validator
-npm install formik
-npm install http-proxy-middleware
-npm install jsonwebtoken
-npm install jwt-decode
-npm install pg
-npm install sequelize
-npm install sequelize-cli
-npm install yup
-
+npm install i
 ```
 
 ## API Reference
-
+#### Base URL: http://localhost:3001/Parameter
 ###  User API
 #### User Sign Up
 
@@ -43,9 +25,9 @@ npm install yup
  POST localhost:3001/signup
 ```
 
-| Parameter | Type     | Description                |
+| Parameter | Type     | Returns                |
 | :-------- | :------- | :------------------------- |
-| `signup` | `string` | **Required**. returns token to user |
+| `signup` | `string` |  returns token to user |
 
 #### User Login
 
@@ -53,41 +35,42 @@ npm install yup
  POST localhost:3001/login
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `login`      | `string` | **Required**. returns token to user |
+| `login`      | `string` |  returns token to user |
 
 ### Token API
+#### Base URL: http://localhost:3001/Parameter
 #### Verify Token
 
 ```http
  GET localhost:3001/verify-token
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `verify-token`      | `string` | **Required**. returns user data |
+| `verify-token`      | `string` |  returns user data |
 
 ### Blogs API
+#### Base URL: http://localhost:3001/Parameter
 #### GET Blogs
 
 ```http
  GET localhost:3001/blogs
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `blogs`      | `string` | **Required**. returns all blogs data|
+| `blogs`      | `string` | returns all blogs data|
 
 #### GET Blog By ID
-
 ```http
  GET localhost:3001/blogs/:id
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                      |
 | :-------- | :------- | :-------------------------------- |
-| `blogs/:id`      | `string` | **Required**. returns a specific blog |
+| `blogs/:id`      | `integer` | returns blog with id |
 
 #### DELETE Blog
 
@@ -95,9 +78,9 @@ npm install yup
  Delete localhost:3001/blogs/:id
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `blogs/:id`      | `string` | **Required**. delte the blog |
+| `blogs/:id`      | `integer` | delete blog with id |
 
 #### Create Blog
 
@@ -105,21 +88,22 @@ npm install yup
  POST localhost:3001/create
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                      |
 | :-------- | :------- | :-------------------------------- |
-| `create`      | `string` | **Required**. returns new blog |
+| `create`      | `string` | returns new blog |
 
 
 ### Comments API
+#### Base URL: http://localhost:3001/Parameter
 #### POST Comments
 
 ```http
  POST localhost:3001//blogs/:blogId/comments
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `/blogs/:blogId/comments`      | `string` | **Required**. returns new comment |
+| `/blogs/:blogId/comments`      | `string` | returns new comment |
 
 #### GET Comments
 
@@ -127,9 +111,9 @@ npm install yup
  GET localhost:3001//blogs/:blogId/comments
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `/blogs/:blogId/comments`      | `string` | **Required**. returns all comments |
+| `/blogs/:blogId/comments`      | `string` |  returns all comments |
 
 #### DELETE Comments
 
@@ -137,9 +121,9 @@ npm install yup
  DELETE localhost:3001/comments/:commentId
 ```
 
-| Parameter | Type     | Description                       |
+| Parameter | Type     | Returns                       |
 | :-------- | :------- | :-------------------------------- |
-| `/comments/:commentId`      | `string` | **Required**. returns new comment |
+| `/comments/:commentId`      | `string` |  returns new comment |
 
 ## Features
 - User Management: The System allows to create user accouts with some information like valid name, email and password. A registered user can login with his provided credentials, to get access to protected routes upon authentication and authorization.
@@ -176,12 +160,8 @@ To run this project, you will need to add the following environment variables to
 
 ## Running Tests
 
-- Backend: To run backend first, run the following commands
+- Backend: To run backend first, move to server folder and run the following commands
 ```bash
-  cd server
-
-  // now run the following command
-
   node server.js
 ```
 -Frontend-: For frontend, run the following command
