@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const config = require('../config/jwtconfig.json');
 const { User } = require('../models');
 
 module.exports = async (req, res, next) => {
@@ -11,7 +10,7 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, config.jwtSecret);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.user = decoded;
     next();
   } catch (error) {
