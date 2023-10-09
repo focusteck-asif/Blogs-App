@@ -8,10 +8,9 @@ const tokenRoutes = require('./routes/tokenRoutes')
 const commentRoutes = require('./routes/commentRoutes')
 const db = require('./config/dbconnect')
 
-
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -22,6 +21,7 @@ const corsOptions = {
     }
   },
 };
+
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -36,11 +36,11 @@ db.query('SELECT NOW()', (err, res) => {
     app.use('/', authRoutes);
     app.use('/', blogRoutes);
     app.use('/', tokenRoutes);
-    app.use('/', commentRoutes)
+    app.use('/', commentRoutes);
 
-    const PORT = 3001;
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    const port = process.env.PORT || 3001;
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
     });
   }
 });
