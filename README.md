@@ -150,14 +150,14 @@ npm install i
 
 
 ## Environment Variables
+### Backend
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DB_PORT`
+`DB_PORT`, `SECRET_KEY`, `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`, `DB_HOST`, `PORT`, `ALLOWED_ORIGINS`
 
-`SECRET_KEY`
-
-
+### Frontend
+`REACT_APP-BASE_URL`
 ## Running Tests
 
 - Backend: To run backend first, move to server folder and run the following commands
