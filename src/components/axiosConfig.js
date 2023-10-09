@@ -1,11 +1,11 @@
 import axios from 'axios';
-
+require('dotenv').config();
 let axiosInstance = null
 
 function getAxiosConfig() {
   const token = localStorage.getItem('token')
   axiosInstance = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: process.env.REACT_APP_BASE_URL,
     timeout: 5000,
     headers: {
       'Authorization': token,
