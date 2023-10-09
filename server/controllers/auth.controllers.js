@@ -19,10 +19,10 @@ exports.createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, password: hashedPassword });
     token = generateToken(user)
-    const one = await User.findAll()
-    res.status(201).json({ message: 'SignUp is Successful', token, one });
-    
-  
+
+    res.status(201).json({ message: 'SignUp is Successful', token });
+
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -47,9 +47,7 @@ exports.loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     token = generateToken(user)
-    const two = await User.findAll()
-    console.log('Users are: ', two)
-    res.status(201).json({ message: 'Login is successful', token, two });
+    res.status(201).json({ message: 'Login is successful', token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error', error });
