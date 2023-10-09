@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const config = require('../config/jwtconfig.json');
+
 
 
 exports.verifyTokens = async (req, res) => {
@@ -13,7 +13,7 @@ exports.verifyTokens = async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(token.replace('Bearer ', ''), config.jwtSecret);
+    const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.SECRET_KEY);
 
     res.status(200).json(decoded);
   } catch (error) {
