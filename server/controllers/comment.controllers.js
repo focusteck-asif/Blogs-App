@@ -1,5 +1,5 @@
 const { Comment, Blog } = require('../models');
-
+const { User } = require('../models')
 exports.createComment = async (req, res) => {
     try {
         const { text, userId, name, email } = req.body;
@@ -7,6 +7,11 @@ exports.createComment = async (req, res) => {
         const blog = await Blog.findByPk(blogId);
         if (!blog) {
             return res.status(404).json({ message: 'Blog not found' });
+        }
+
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid userId' });
         }
 
         const comment = await Comment.create({
@@ -18,6 +23,7 @@ exports.createComment = async (req, res) => {
         });
 
         res.status(201).json(comment);
+        console.log('Comment is created successfully: ', comment)
     } catch (error) {
         console.error('Error creating comment:', error);
         res.status(500).json({ message: 'Internal server error' });
