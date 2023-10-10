@@ -29,9 +29,7 @@ const LoginPage = () => {
       await login(values);
       await history.push('/home');
     } catch (error) {
-      console.error('error is: ', error)
       setErrorMessage('invalid credentials: please enter valid email and password.');
-      console.log('Status is: ', errorMessage)
     } finally {
       resetForm()
     }
