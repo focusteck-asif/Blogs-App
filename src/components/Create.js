@@ -36,7 +36,6 @@ const Create = () => {
       const axiosInstance = await getAxiosConfig()
       const response = await axiosInstance.post('http://localhost:3001/create', blog);
       if (response.status === 201) {
-        console.log('New blog added successfully.');
         history.push('/');
       }
     } catch (err) {
