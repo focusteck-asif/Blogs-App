@@ -37,12 +37,12 @@ function App() {
               {user ? <BlogDetails /> : < Redirect to="/" />}
             </Route>
 
-            <Route path="/login">
-              <LoginPage />
+            < Route path="/login">
+              {user? <Redirect to="/home"/> : <LoginPage />}
             </Route>
 
             <Route path="/signup">
-              < SignUpPage />
+              { user? <Redirect to="/home"/> : < SignUpPage />}
             </Route>
 
             <Route path="*">
