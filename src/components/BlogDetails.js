@@ -44,7 +44,7 @@ const BlogDetails = () => {
       const response = await axiosInstance.get(`http://localhost:3001/blogs/${id}/comments`);
       setComments(response.data);
     } catch (error) {
-      console.log('There is an error.', error);
+      console.error('There is an error.', error);
     }
   }
 
@@ -65,7 +65,6 @@ const BlogDetails = () => {
       const axiosInstance = await getAxiosConfig();
       const response = await axiosInstance.delete(`http://localhost:3001/blogs/${blog.id}`);
       if (response.status === 200) {
-        console.log('Blog deleted successfully.');
         history.push('/');
       }
     } catch (error) {
