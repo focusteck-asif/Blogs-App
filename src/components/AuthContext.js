@@ -60,12 +60,7 @@ export const AuthProvider = ({ children }) => {
     const signUp = async (userData) => {
         try {
             const axiosInstance = await getAxiosConfig()
-            const response = await axiosInstance.post(`http://localhost:3001/signup`, userData);
-            const { token } = response.data;
-            await setTokenToLocalStorage(token)
-            if (response.status === 201) {
-                await verifyToken(token);
-            }
+            await axiosInstance.post(`http://localhost:3001/signup`, userData);
         } catch (error) {
             console.error(error.message);
         }
